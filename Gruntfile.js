@@ -20,12 +20,17 @@ module.exports = function(grunt) {
 
     clean: {
       js: 'build/js'
+    },
+
+    jshint: {
+      files: 'public/js/**/*.js'
     }
   });
 
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-contrib-jshint');
 
-  grunt.registerTask('js', 'Concatenate and minify js files', ['clean:js', 'concat:js', 'uglify:bundle']);
+  grunt.registerTask('js', 'Clean, Lint, Concatenate, and Minify js files', ['clean:js','jshint:files','concat:js','uglify:bundle']);
 };
