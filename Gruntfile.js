@@ -2,14 +2,14 @@
 
 module.exports = function(grunt){
   grunt.initConfig({
-    concat: {
+    uglify: {
       js: {
         files: {
-          'build/js/bundle.js': 'public/js/**/*.js'
+          'build/js/foo.min.js': 'public/js/foo.js'
         }
       }
     }
   });
 
-  grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
 };
