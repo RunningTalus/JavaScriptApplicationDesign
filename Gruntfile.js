@@ -2,25 +2,14 @@
 
 module.exports = function(grunt){
   grunt.initConfig({
-    concat: {
-      js: {
-        files: {
-          'build/js/bundle.js': 'public/js/**/*.js'
-        }
-      }
-    },
-
-    uglify: {
-      bundle: {
-        files: {
-          'build/js/bundle.min.js': 'build/js/bundle.js'
-        }
+    sprite: {
+      icons: {
+        src: 'public/img/icons/*.png',
+        dest: 'build/img/icons.png',
+        destCss: 'build/css/icons.css',
       }
     }
   });
 
-  grunt.loadNpmTasks("grunt-contrib-concat");
-  grunt.loadNpmTasks('grunt-contrib-uglify');
-
-  grunt.registerTask('js', 'Concatenate and minify JS files', ['concat:js', 'uglify:bundle']);
+  grunt.loadNpmTasks('grunt-spritesmith');
 };
