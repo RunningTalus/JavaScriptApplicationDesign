@@ -2,14 +2,25 @@
 
 module.exports = function(grunt){
   grunt.initConfig({
-    uglify: {
+    concat: {
       js: {
         files: {
-          'build/js/foo.min.js': 'public/js/foo.js'
+          'build/js/bundle.js': 'public/js/**/*.js'
+        }
+      }
+    },
+
+    uglify: {
+      bundle: {
+        files: {
+          'build/js/bundle.min.js': 'build/js/bundle.js'
         }
       }
     }
   });
 
+  grunt.loadNpmTasks("grunt-contrib-concat");
   grunt.loadNpmTasks('grunt-contrib-uglify');
+
+  grunt.registerTask('js', 'Concatenate and minify JS files', ['concat:js', 'uglify:bundle']);
 };
