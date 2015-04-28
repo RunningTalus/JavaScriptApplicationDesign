@@ -1,36 +1,22 @@
 'use strict';
 
 module.exports = function(grunt) {
-  grunt.initConfig({
-    concat: {
-      js: {
-        files: {
-          'build/js/bundle.js': 'public/js/**/*.js'
-        }
-      }
-    },
+  grunt.registerTask('timestamp', 'Creates a file with a timestamp in it', function(){
+    var options = this.options({
+      file: 'timestamp'
+    });
+    var stamp = +new Date();
+  //  cast date into a UNIX timestamp
+    var contents = stamp.toString();
 
-    uglify: {
-      bundle: {
-        files: {
-          'build/js/all.min.js': 'build/js/bundle.js'
-        }
-      }
-    },
-
-    clean: {
-      js: 'build/js'
-    },
-
-    jshint: {
-      files: 'public/js/**/*.js'
-    }
+    grunt.file.write(options.file, contents);
   });
 
-  grunt.loadNpmTasks('grunt-contrib-concat');
-  grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-clean');
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-
-  grunt.registerTask('js', 'Clean, Lint, Concatenate, and Minify js files', ['clean:js','jshint:files','concat:js','uglify:bundle']);
+  grunt.initConfig({
+    timestamp: {
+      options: {
+        file: 'public/timestamp.txt'
+      }
+    }
+  })
 };
