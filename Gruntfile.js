@@ -1,22 +1,19 @@
 'use strict';
 
-module.exports = function(grunt) {
-  grunt.registerTask('timestamp', 'Creates a file with a timestamp in it', function(){
-    var options = this.options({
-      file: 'timestamp'
-    });
-    var stamp = +new Date();
-  //  cast date into a UNIX timestamp
-    var contents = stamp.toString();
+// the credentials we use to connect to our MySQL server
+var options = require('./db.json');
 
-    grunt.file.write(options.file, contents);
+module.exports = function(grunt){
+  grunt.initConfig({
+    db_create: { options: options },
+    db_upgrade: { options: options },
+    db_rollback: { options: options },
+    db_seed: { options: options }
   });
 
-  grunt.initConfig({
-    timestamp: {
-      options: {
-        file: 'public/timestamp.txt'
-      }
-    }
-  })
+  // load all the tasks in the `tasks/` directory
+  grunt.loadTasks('./tasks');
+
+  // register a first time setup alias
+  grunt.registerTask('db_setup', 'Create, update, and seed a new database', ['db_create', 'db_upgrade', 'db_seed']);
 };
