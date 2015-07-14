@@ -55,7 +55,7 @@ $RECYCLE.BIN/
 ### WebStorm ###
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm
 
-*.iml
+../../.idea/JavaScriptApplicationDesign.iml
 
 ## Directory-based project format:
 .idea/
