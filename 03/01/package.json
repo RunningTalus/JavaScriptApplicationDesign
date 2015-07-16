@@ -1,6 +1,7 @@
 {
   "name": "JavaScriptApplicationDesign",
   "version": "0.3.1",
+  "description": "Creating debug and release flows with Grunt.",
   "homepage": "https://github.com/buildfirst/buildfirst",
   "author": {
     "name": "Dave May",
