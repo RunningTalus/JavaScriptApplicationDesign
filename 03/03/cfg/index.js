@@ -1,6 +1,6 @@
 'use strict';
 
-var conf = require('nconf');
+var nconf = require('nconf');
 
 nconf.argv();
 nconf.env();
